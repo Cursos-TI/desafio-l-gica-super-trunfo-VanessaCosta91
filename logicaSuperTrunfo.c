@@ -1,14 +1,15 @@
 #include <stdio.h>
 
-// Desafio Super Trunfo - Países
+// Desafio Super Trunfo - Cidades
 
 int main() {
 
-  // Área para definição das variáveis para armazenar as propriedades das cidades
+    // Área para definição das variáveis para armazenar as propriedades das cidades
+
     // Carta 1
     char estado1, cod_carta1[4], nome_cidade1[30];
     unsigned long int populacao1;
-    int  n_pontos_turisticos1;
+    int n_pontos_turisticos1;
     float area1, pib1, densidade_pop1, pib_per_capita1, super_poder1;
 
     // Carta 2
@@ -19,20 +20,20 @@ int main() {
 
     // resultados comparação
     int resultado_populacao, resultado_pontos_turisticos, resultado_area;
-    int  resultado_pib, resultado_densidade, resultado_per_capita, resultado_poder;
+    int resultado_pib, resultado_densidade, resultado_per_capita, resultado_poder;
 
-  // Área para entrada de dados
-   printf("Vamos começar o jogo. Insira duas cartas, seguindo o passo a passo a seguir: \n\n");
+    // Área para entrada de dados
+    printf("Vamos começar o jogo. Insira duas cartas, seguindo o passo a passo a seguir: \n\n");
 
-    // Carta 1 
+    // Carta 1
     printf("Carta 1 \nDigite uma letra (A - H): ");
     scanf(" %c", &estado1);
 
     printf("Digite o código da carta (ex: A01): ");
-    scanf("%s", &cod_carta1);
+    scanf("%s", cod_carta1);
 
     printf("Qual nome da cidade?  ");
-    scanf("%s", &nome_cidade1);
+    scanf("%s", nome_cidade1);
 
     printf("Quantos habitantes a cidade possui?  ");
     scanf("%lu", &populacao1);
@@ -48,18 +49,19 @@ int main() {
 
     densidade_pop1 = (float) populacao1 / area1;
     pib_per_capita1 = pib1 / (float) populacao1;
-    super_poder1 = (float) populacao1 + n_pontos_turisticos1 +  area1 +
-                                       pib1  + pib_per_capita1  +  (1.0 / densidade_pop1);
+    super_poder1 =
+        (float) populacao1 + n_pontos_turisticos1 + area1 +
+        pib1 + pib_per_capita1 + (1.0 / densidade_pop1);
 
     /* Carta 2 */
     printf("\nCarta 2 \nDigite a letra do Estado (A - H): ");
     scanf(" %c", &estado2);
 
     printf("Digite o código da carta (ex: A01):  ");
-    scanf("%s", &cod_carta2);
+    scanf("%s", cod_carta2);
 
     printf("Qual nome da cidade?  ");
-    scanf("%s", &nome_cidade2);
+    scanf("%s", nome_cidade2);
 
     printf("Quantos habitantes a cidade possui?  ");
     scanf("%lu", &populacao2);
@@ -75,11 +77,14 @@ int main() {
 
     densidade_pop2 = (float) populacao2 / area2;
     pib_per_capita2 = pib2 / (float) populacao2;
-    super_poder2 = (float) populacao2 + n_pontos_turisticos2 + area2 +
-                                        pib2  +  pib_per_capita2  +  (1.0 / densidade_pop2);
+    super_poder2 =
+        (float) populacao2 + n_pontos_turisticos2 + area2 +
+        pib2 + pib_per_capita2 + (1.0 / densidade_pop2);
 
-  
-  // Área para exibição dos dados da cidade
+    // Demais variáveis
+    int opcao;
+
+    // Área para exibição dos dados da cidade
     printf("\n*** Aqui estão as cartas ***\n");
 
     /* Mostrar cartas inseridas */
@@ -107,23 +112,125 @@ int main() {
     printf("PIB per Capita: %.2f reais\n", pib_per_capita2);
     printf("Super poder: %.2f\n", super_poder2);
 
-    // Comparações
+    // Menu do Jogo
+    printf("\n### Jogo Super Trunfo ###\n");
+    printf("Escolha um atributo.\n");
+    printf("1 - População\n");
+    printf("2 - Pontos Turísticos\n");
+    printf("3 - Área\n");
+    printf("4 - PIB\n");
+    printf("5 - Densidade Populacional\n");
+    printf("6 - PIB per Capita\n");
+    printf("7 - Super Poder\n");
 
-    resultado_populacao = populacao1 > populacao2;
-    resultado_pontos_turisticos = n_pontos_turisticos1 > n_pontos_turisticos2;
-    resultado_area = area1 > area2;
-    resultado_pib = pib1 > pib2;
-    resultado_densidade = densidade_pop1 < densidade_pop2;
-    resultado_per_capita = pib_per_capita1 > pib_per_capita2;
-    resultado_poder = super_poder1 > super_poder2;
+    printf("\nDigite a opção que deseja: ");
+    scanf("%d", &opcao);
 
-    printf("\n\nComparação de cartas (Atributo: Densidade Populacional):\n\n");
-    if (resultado_densidade) {
-      printf("Carta 1 - %s: %.2f \n", nome_cidade1, densidade_pop1);
-      printf("Carta 2 - %s: %.2f \n", nome_cidade2, densidade_pop2);
-      printf("Carta 1 (%s) venceu!\n", nome_cidade1);
-    } else {
-      printf("Carta 1 - %s: %.2f \n", nome_cidade1, densidade_pop1);
-      printf("Carta 2 - %s: %.2f \n", nome_cidade2, densidade_pop2);
-      printf("Carta 2 (%s) venceu!\n", nome_cidade2);
+    // Execução do Jogp
+    switch (opcao) {
+
+        case 1:            
+            printf("\n\nComparação de cartas (Atributo - População:\n\n");
+            printf("Carta 1 - %s: %u\n", nome_cidade1, populacao1);
+            printf("Carta 2 - %s: %u\n", nome_cidade2, populacao2);
+
+            if (populacao1 > populacao2) {
+                printf("Carta 1 (%s) venceu!\n", nome_cidade1);
+            } else if (populacao1 < populacao2) {
+                printf("Carta 2 (%s) venceu!\n", nome_cidade2);
+            } else {
+                printf("Empate!\n");
+            }
+        break;
+
+        case 2:            
+            printf("\n\nComparação de cartas \n Atributo - Nº Pontos Turísticos:\n\n");
+            printf("Carta 1 - %s: %d \n", nome_cidade1, n_pontos_turisticos1);
+            printf("Carta 2 - %s: %d \n", nome_cidade2, n_pontos_turisticos2);
+
+            if (n_pontos_turisticos1 > n_pontos_turisticos2) {
+                printf("Carta 1 (%s) venceu!\n", nome_cidade1);
+            } else if (n_pontos_turisticos1 < n_pontos_turisticos2) {
+                printf("Carta 2 (%s) venceu!\n", nome_cidade2);
+            } else {
+                printf("Empate!\n");
+            }
+        break;
+
+        case 3:            
+            printf("\n\nComparação de cartas \n Atributo - Área:\n\n");
+            printf("Carta 1 - %s: %.2f \n", nome_cidade1, area1);
+            printf("Carta 2 - %s: %.2f \n", nome_cidade2, area2);
+
+            if (area1 > area2) {
+                printf("Carta 1 (%s) venceu!\n", nome_cidade1);
+            } else if (area1 < area2) {
+                printf("Carta 2 (%s) venceu!\n", nome_cidade2);
+            } else {
+                printf("Empate!\n");
+            }
+        break;
+
+        case 4:            
+            printf("\n\nComparação de cartas \n Atributo -  PIB:\n\n");
+            printf("Carta 1 - %s: %.2f\n", nome_cidade1, pib1);
+            printf("Carta 2 - %s: %.2f \n", nome_cidade2, pib2);
+
+            if (pib1 > pib2) {
+                printf("Carta 1 (%s) venceu!\n", nome_cidade1);
+            } else if (pib1 <pib2) {
+                printf("Carta 2 (%s) venceu!\n", nome_cidade2);
+            } else {
+                printf("Empate!\n");
+            }
+        break;
+
+        case 5:            
+            printf("\n\nComparação de cartas \n Atributo - Densidade Populacional:\n\n");
+            printf("Carta 1 - %s: %.2f \n", nome_cidade1, densidade_pop1);
+            printf("Carta 2 - %s: %.2f \n", nome_cidade2, densidade_pop2);
+
+            if (densidade_pop1 < densidade_pop2) {
+                printf("Carta 1 (%s) venceu!\n", nome_cidade1);
+            } else if (densidade_pop1 > densidade_pop2) {
+                printf("Carta 2 (%s) venceu!\n", nome_cidade2);
+            } else {
+                printf("Empate!\n");
+            }
+        break;
+        
+         case 6:            
+            printf("\n\nComparação de cartas \n Atributo - PIB per Capita:\n\n");
+            printf("Carta 1 - %s: %.2f \n", nome_cidade1, pib_per_capita1);
+            printf("Carta 2 - %s: %.2f \n", nome_cidade2, pib_per_capita1);
+
+            if (pib_per_capita1 > pib_per_capita2) {
+                printf("Carta 1 (%s) venceu!\n", nome_cidade1);
+            } else if (pib_per_capita1 < pib_per_capita2) {
+                printf("Carta 2 (%s) venceu!\n", nome_cidade2);
+            } else {
+                printf("Empate!\n");
+            }
+        break;
+
+        case 7:            
+            printf("\n\nComparação de cartas \n Atributo - PIB per Capita:\n\n");
+            printf("Carta 1 - %s: %.2f \n", nome_cidade1, super_poder1);
+            printf("Carta 2 - %s: %.2f \n", nome_cidade2, super_poder2);
+
+            if (super_poder1 > super_poder2) {
+                printf("Carta 1 (%s) venceu!\n", nome_cidade1);
+            } else if (super_poder1 < super_poder2) {
+                printf("Carta 2 (%s) venceu!\n", nome_cidade2);
+            } else {
+                printf("Empate!\n");
+            }
+        break;
+        
+        default:
+            printf("Opção inválida!\n");
+        break;
     }
+
+    return 0;
+}
